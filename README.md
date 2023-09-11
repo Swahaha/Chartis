@@ -1,5 +1,5 @@
 # HackDuke Auth0 Award Winners
-### Team: **Swarajh Mehta (Team lead)** (Back-end python & mongoDB with fastAPI), **Bruno Makoto** (Leaflet & layer management), **Alejandro Herera** (Front end design with React/CSS), **Hung Le** (Config set-up & Auth0 integration)
+Team: **Swarajh Mehta (Team lead)** (Back-end python & mongoDB with fastAPI), **Bruno Makoto** (Leaflet & layer management), **Alejandro Herera** (Front end design with React/CSS), **Hung Le** (Config set-up & Auth0 integration)
 
 # Chártis: Navigating Education, Empowering Inclusion
 
