@@ -1,0 +1,77 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  namespace: hvl5-cli-deployment
+  name: data-foundry-2023-shib
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        deploymentconfig: data-foundry-2023-shib
+        app: data-foundry-2023-httpd-shib
+    spec:
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: apache-configs
+          name: volume-apache-config
+        - configMap:
+            defaultMode: 420
+            name: shib-configs
+          name: volume-shib-2-xml
+        - configMap:
+            defaultMode: 420
+            name: shib-configs
+          name: volume-shib-attrib-map
+        - secret:
+            defaultMode: 420
+            secretName: data-foundry-2023-tls
+          name: volume-shib-sp-creds
+        - emptyDir: {}
+          name: volume-shib-socket
+      containers:
+        - image: gitlab-registry.oit.duke.edu/duke_openshift_users/community-supported-resources/duke-shibboleth/duke-modshib:centos-apache
+          imagePullPolicy: Always
+          name: httpd
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          volumeMounts:
+            - mountPath: /var/run/shibboleth
+              name: volume-shib-socket
+            - mountPath: /etc/shibboleth/shibboleth2.xml
+              name: volume-shib-2-xml
+              readOnly: true
+              subPath: shibboleth2.xml
+            - mountPath: /etc/httpd/conf.d/servername.conf
+              name: volume-apache-config
+              readOnly: true
+              subPath: servername.conf
+            - mountPath: /etc/httpd/conf.d/application.conf
+              name: volume-apache-config
+              readOnly: true
+              subPath: application.conf
+        - image: gitlab-registry.oit.duke.edu/duke_openshift_users/community-supported-resources/duke-shibboleth/duke-shibboleth:centos7
+          imagePullPolicy: Always
+          name: shibd
+          volumeMounts:
+            - mountPath: /var/run/shibboleth
+              name: volume-shib-socket
+            - mountPath: /etc/shibboleth/shibboleth2.xml
+              name: volume-shib-2-xml
+              readOnly: true
+              subPath: shibboleth2.xml
+            - mountPath: /etc/shibboleth/attribute-map.xml
+              name: volume-shib-attrib-map
+              readOnly: true
+              subPath: attribute-map.xml
+            - mountPath: /etc/shibboleth/tls.key
+              name: volume-shib-sp-creds
+              readOnly: true
+              subPath: tls.key
+            - mountPath: /etc/shibboleth/tls.crt
+              name: volume-shib-sp-creds
+              readOnly: true
+              subPath: tls.crt

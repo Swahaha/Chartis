@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shib-service
+  namespace: hvl5-cli-deployment
+spec:
+  selector:
+    app: data-foundry-2023-httpd-shib
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

@@ -1,0 +1,27 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: data-foundry-2023-app-dev
+  namespace: hvl5-cli-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: data-foundry-2023-app-dev
+        deploymentconfig: data-foundry-2023-app-dev
+    spec:
+      containers:
+        - name: data-foundry-2023-app
+          image: >-
+            gitlab-registry.oit.duke.edu/codeplus/data-foundry-2023/data-foundry-2023-app:dockerize
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: env-configs
+          imagePullPolicy: Always
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: data-foundry-2023-dev

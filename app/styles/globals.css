@@ -1,0 +1,469 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Lato:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Lato:wght@100&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css")
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  --duke-navy-blue: 1, 33, 105;
+  --duke-royal-blue: 0, 83, 155;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Baloo Paaji 2', cursive;
+}
+
+#map {
+  width: 100%;
+  height: 100vh;
+}
+
+.coordinate {
+  position: absolute;
+  bottom: 10px;
+  right: 50%;
+}
+
+.logo {
+  width: 300px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0;    /* Adjust as needed */
+  padding: 0;   /* Adjust as needed */
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #000000;
+  color: #fff;
+  border: 1px solid red;
+  border-radius: 0px;
+}
+
+.leaflet-div-icon {
+  background: transparent;
+  
+}
+
+/*search container stuff*/
+
+.search-container-placer{
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.search-container{
+  width: 548px;
+  /*height: 90px;*/
+  flex-shrink: 0;
+  border-radius: 20px 20px 0px 0px;
+  background: #FBFBFB;
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 15px;
+  gap: 30px;
+  position: relative;
+  pointer-events: auto;
+}
+
+.up{
+  animation: searchContainerUp 1s forwards;
+}
+
+.down{
+  animation: searchContainerDown 1s forwards;
+}
+
+
+.search-icon{
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  background-color: #5BB7DE;
+  border-radius: 100%;
+  transform: translate(7px,-4px);
+}
+
+.search-box{
+  width: 405px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 3px solid #C0C0C0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+  font-size: 28px;
+}
+
+.search-box:hover{
+  background: linear-gradient(rgb(232, 232, 232), rgb(244, 240, 240));
+  transition: 0.3s;
+}
+
+.search-output-container{
+  transition: 1s;
+  pointer-events: none;
+}
+
+.active{
+  opacity: 100%;
+}
+
+.inactive{
+  opacity: 0%;
+}
+
+@keyframes searchContainerUp {
+  0% {
+    height: 90px;
+  }
+  100% {
+    height: 391px;
+  }
+}
+
+@keyframes searchContainerDown {
+  0% {
+    height: 391px;
+  }
+  100% {
+    height: 90px;
+  }
+}
+
+.search-output-container{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.destinations-title{
+  color: #000;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.destinations-container{
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/*add items stuff*/
+
+.add-items-container-placer{
+  position: absolute;
+  right: 40px;
+  top: 130px;
+  pointer-events: none;
+}
+
+.add-items-icon{
+  pointer-events: auto;
+  height: 65px;
+  width: 65px;
+  border-radius: 100%;
+  background: linear-gradient(#5BB7DE,#3594bc);
+  border: 5px solid #54A3C5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  z-index: 1;
+}
+
+.add-items-icon:hover{
+  box-shadow: 0px 0px 10px #6d6d6d ;
+}
+
+/*add items popup*/
+
+.add-items-popup-placer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  pointer-events: auto;
+}
+
+.add-items-popup{
+  width: 578px;
+  height: 53px;
+  border-radius: 10px;
+  background: rgba(91, 183, 222, 0.90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-items-popup-text{
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.add-items-popup-triangle{
+  transform: translate(-1px,0);
+}
+
+.add-items-popup-close{
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter;
+  font-size: 17px;
+  background: rgba(72, 145, 176, 0.9);
+  position: absolute;
+  right: 60px;
+}
+
+.add-items-popup-close:hover{
+  background: rgba(53, 107, 130, 0.9);
+}
+
+/**/
+
+.map-container{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+/**/
+
+.blueprint-popup-placer{
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  width: 100vw;
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.blueprint-popup-container{
+  width: 95%;
+  height: 95%;
+  border-radius: 20px;
+  background-color: #FFF;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  pointer-events: auto;
+}
+
+.blueprint-popup-close-btn{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 61px;
+  height: 61px;
+  background-color: #D9D9D9;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter;
+  font-size: 20px;
+}
+
+.blueprint-popup-close-btn:hover{
+  background-color: #bebebe;
+}
+
+/**/
+
+.user-suggest-marker-placer{
+  position: absolute;
+  top:0px;
+  left:0px;
+  font-family: Inter;
+}
+
+.user-suggest-marker-container{
+  width: 276px;
+  height: 98px;
+  border-radius: 10px;
+  background: #61B4D7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.user-suggest-marker-triangle{
+  transform: translate(110px,0);
+}
+
+.log-in-container{
+  
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 150px;
+  z-index: 3;
+  pointer-events: auto;
+  background: linear-gradient(180deg, #00AFF9 0%, rgba(0, 175, 249, 0.00) 91.15%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-top: 0px;
+}
+
+img.leaflet-marker-icon.leaflet-div-icon.leaflet-zoom-animated.leaflet-interactive{
+  background-color: transparent !important;
+  border: none;
+}
+
+
+
+.leaflet-marker{
+  pointer-events: none;
+}
+
+.user-suggest-popup-placer{
+  position: absolute;
+  z-index: 1;
+  pointer-events: auto;
+  top: 200px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.user-suggest-popup{
+  width: 552px;
+  height: 101px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 10px solid #357C9A;
+  background: #FFF;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  font-family: Inter;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user-suggest-popup > select{
+  font-size: 20px;
+}
+
+.user-suggest-popup > button{
+  width: 161px;
+  height: 55px;
+  border-radius: 11px;
+  border: 3px solid #5A5A5A;
+  background: linear-gradient(96deg, #D9D9D9 6.04%, rgba(217, 217, 217, 0.62) 39.88%, rgba(217, 217, 217, 0.00) 133.98%);
+  color: #202020;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.log-nav{
+  border-radius: 5px;
+  border: 2px solid #00AFF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter;
+  margin-right: 20px;
+  padding: 5px 20px;
+}
+
+.log-in-container > div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.log-in-container > div > div > h2{
+  margin-right: 10px;
+}
+
+.log-in-container > div > div > p{
+   display: none;
+}
+
+.welcome-text{
+  color: #000;
+  font-family: 'Baloo Paaji 2';
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.log-btn{
+  width: 214px;
+  height: 58px;
+  border-radius: 29px;
+  border: 2px solid #0052F0;
+  background: linear-gradient(95deg, #DEDEDE 10.74%, rgba(217, 217, 217, 0.00) 88.06%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  transition: 1s;
+  color: #000;
+  font-family: 'Baloo Paaji 2';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration:none;
+  transition: 0.2s;
+}
+
+.log-btn:hover{
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset, 0px 0px 20px 0px rgba(0, 0, 0, 0.80);
+}
+
+.logo{
+  position: absolute;
+  left: 40px;
+  width: 150px;
+  height: 80px;
+  transform: translate(0px, 50px);
+}
