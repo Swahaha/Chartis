@@ -4,7 +4,7 @@ Team: **Swarajh Mehta (Team lead)** (Back-end python & mongoDB with fastAPI), **
 # Chártis: Navigating Education, Empowering Inclusion
 
 <p align="center">
-  <img src="chartis-logo.png" alt="Chartis Logo" width="400"/>
+  <img src="chartis-logo.png" alt="Chartis Logo" width="200"/>
 </p>
 
 ## Inspiration
@@ -18,8 +18,12 @@ Our primary goal was to develop a map and navigation tool. We envisioned a platf
 Our project's core feature is an interactive map of Duke University. Leveraging the Open Street Maps database, we displayed a detailed map of the campus. Users can also access building floor plans to locate the nearest accessible restrooms and elevators. The routing feature enabled users to navigate to any destination on campus, with the real-time feedback of the path dynamically adjusting as they progressed. 
 
 <p align="center">
-  <img src="Routingdemo.png" alt="Routing Demo" width="600"/>
-  <img src="Search.png" alt="Search bar" width="600"/>
+  <img src="Routingdemo.png" alt="Routing Demo" width="400"/>
+  <br>
+  <em>Routing Demo</em>
+  <img src="Search.png" alt="Search bar" width="400"/>
+  <br>
+  <em>Search bar</em>
 </p>
 
 
@@ -28,6 +32,8 @@ Through a crowdsourcing feature, users can contribute data on the locations of s
 
 <p align="center">
   <img src="datacollection.png" alt="UI for inputting data" width="800"/>
+  <br>
+  <em>UI for inputting data</em>
 </p>
 
 ## Future Development
@@ -35,6 +41,8 @@ Looking ahead, we envision several exciting developments for Chártis. We incorp
 
 <p align="center">
   <img src="login.png" alt="The current Chártis Auth-0 integration" width="200"/>
+  <br>
+  <em>The current Chártis Auth-0 integration</em>
 </p>
 
 ## Challenges
