@@ -3,7 +3,9 @@ Team: **Swarajh Mehta (Team lead)** (Back-end python & mongoDB with fastAPI), **
 
 # Chártis: Navigating Education, Empowering Inclusion
 
-![](chartis-logo.png)
+<p align="center">
+  <img src="chartis-logo.png" alt="Chartis Logo" width="400"/>
+</p>
 
 ## Inspiration
 Our journey with Chártis began with a simple observation - Duke University has a lot of educational resources, but they are not all easily accessible to everyone. A close friend’s experience using crutches due to a leg injury highlighted a gap in the knowledge and utilization of the university’s existing accessibility features. This inspired us to create a project to bridge this gap and make education more accessible. Hopefully, Chártis could help students make the most out of their Duke experience.
@@ -15,14 +17,18 @@ Our primary goal was to develop a map and navigation tool. We envisioned a platf
 ### Interactive Map and Navigation
 Our project's core feature is an interactive map of Duke University. Leveraging the Open Street Maps database, we displayed a detailed map of the campus. Users can also access building floor plans to locate the nearest accessible restrooms and elevators. The routing feature enabled users to navigate to any destination on campus, with the real-time feedback of the path dynamically adjusting as they progressed. 
 
-![Routing Demo](Routingdemo.png)
-![Search bar](Search.png)
+<p align="center">
+  <img src="Routingdemo.png" alt="Routing Demo" width="600"/>
+  <img src="Search.png" alt="Search bar" width="600"/>
+</p>
 
 
 ### Crowdsourcing Accessibility Data
 Through a crowdsourcing feature, users can contribute data on the locations of staircases, accessible bathrooms, elevators, ramps, and more. Additionally, we introduced functionality for short-term data, such as users reporting puddles or flooded areas. Leveraging the dynamic nature of mongoDB atlas as well as its programmable triggers allows us to effectively manipulate this data. These user-generated markers are not only visible to users on the map, but they also influence the routing algorithm. For example, the algorithm can find routes that avoid staircases based on this collected data.
 
-![UI for inputting data](datacollection.png)
+<p align="center">
+  <img src="datacollection.png" alt="UI for inputting data" width="800"/>
+</p>
 
 ## Future Development
 Looking ahead, we envision several exciting developments for Chártis. We incorporated Auth0 authentication for user profiles, allowing for a personalised experience. We imagine developing this idea for increased customizability: for instance, users with crutches could customize the routing algorithm to prioritize routes with short, manageable staircases (such as the ones outside craven) instead of having to take large staircases or none at all. This dynamic adaptation would further enhance the user experience and inclusivity of the platform.
