@@ -27,7 +27,9 @@ Through a crowdsourcing feature, users can contribute data on the locations of s
 ## Future Development
 Looking ahead, we envision several exciting developments for Chártis. We incorporated Auth0 authentication for user profiles, allowing for a personalised experience. We imagine developing this idea for increased customizability: for instance, users with crutches could customize the routing algorithm to prioritize routes with short, manageable staircases (such as the ones outside craven) instead of having to take large staircases or none at all. This dynamic adaptation would further enhance the user experience and inclusivity of the platform.
 
-![The current Chártis Auth-0 integration](login.png)
+<p align="center">
+  <img src="login.png" alt="The current Chártis Auth-0 integration" width="200"/>
+</p>
 
 ## Challenges
 Building Chártis came with its fair share of challenges. Making the user-inputted data modulate the models we made for routing required a lot of problem solving and collaboration. We also challenged ourselves to imagine how we could make the project more accessible resulting in some over-ambitious features that had to be scaled back due to time constraints. This was also the first full stack project and first hackathon for half our team, so despite the challenges, we are all really happy with what we accomplished this week.
