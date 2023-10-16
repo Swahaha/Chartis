@@ -1,7 +1,0 @@
-"cd api" and then "python3 -m uvicorn main:app --reload"
--- Greedy algorithm to keep installing dependencies
-
-"cd app" and then "npm run dev"
--- "npm i" to install dependencies
-
-Finally, localhost:3000 for running version and localhost:8000 for fastAPI and back-end
